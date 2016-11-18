@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript"
+	src="../js/jquery-easyui-1.4/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../js/jquery-easyui-1.4/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="../js/jquery-easyui-1.4/themes/icon.css" />
+<script type="text/javascript"
+	src="../js/jquery-easyui-1.4/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="../js/jquery-easyui-1.4/locale/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+
+    var by='201607';
+	$(function() {
+		/*  $.messager.alert('消息头', '内容正在传输中……', 'info');  */
+		$("#mypanel").window({
+			width : 600,
+			hight : 600,
+			title : '我的对话框'
+		});
+		/*  $.messager.confirm('确认对话框', '确定吗', function(r){
+			if(r){
+				alert('ok');
+			}else{
+				alert('err');
+			}
+		})  */
+		$.extend($.fn.validatebox.defaults.rules, {
+			made : {
+				validator : function(value) {
+					if (value == '我是sb') {
+						return true;
+					} else {
+						return false;
+					}
+				},
+				message : '自我认识不清楚！！！，再重新思考一下！'
+			}
+		});
+
+		$.fn.datebox.defaults.formatter = function(date) {
+			var y = date.getFullYear();
+			var m = date.getMonth() + 1;
+			var d = date.getDate();
+			return y + "-" + (m < 10 ? ('0' + m) : m) + "-"
+					+ (d < 10 ? ('0' + d) : d);
+		}
+
+		$("#ab").validatebox({
+			required : true,
+			validType : "made",
+			missingMessage : "你是sb吗"
+
+		});
+
+		$("#nn").numberbox({
+			required : true,
+			mix : 0,
+			max : 100,
+			missingMessage : "必输项"
+		});
+
+		$("#sr").datebox({
+			required : true,
+		});
+		/* $.messager.prompt('输入框', '请输入姓名', function(b){
+			
+			alert('你的姓名是'+ b);
+		}) */
+	})
+    var dateStr='2016/09/23';
+	var mindate=new Date(dateStr);
+/* 	var  day = new Date(dateStr.substring(0,4),dateStr.substring(4,6)+1,0);
+	var maxdate=new Date(mindate.getYear(),mindate.getMonth()+1,day.getDate()); */
+	
+	var Datepick = function() {
+		alert(mindate);
+		WdatePicker({
+			dateFmt:'yyyyMMdd',
+			lang :'zh-cn',
+			minDate :mindate
+			
+		});
+	}
+	var Datepick1 = function() {
+		WdatePicker({
+			dateFmt:'yyyyMMdd',
+			lang :'zh-cn',
+			maxDate:maxdate
+		});
+	}
+</script>
+</head>
+<body>
+	<div id="mypanel">
+		<form>
+			<table>
+				<tr>
+					<td>输入框：<input id="ab" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>数字框：<input id="nn" type="text" />
+					</td>
+					<td>生日：<input id="sr" type="text" />
+					</td>
+				</tr>
+				<tr>
+					<td>开始日期：<input id="startDate" class="Wdate" onclick="Datepick()" />
+					</td>
+					<td>结束日期：<input id="endDate" class="Wdate" onclick="Datepick1()" />
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>
