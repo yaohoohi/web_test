@@ -10,8 +10,8 @@ import java.io.OutputStreamWriter;
 
 public class IoTest {
 	public static void main(String[] args) {
-		//test1();
-		test2();
+		test1();
+		test2();//mofpdkv[fk[apflk[apslfasfsa
 	}
 
 	private static void test3() {
